@@ -2,11 +2,11 @@
 This is a single layer neural network (26 neurons) which is used to classify images of alphabets.
 
 Training
-________
+========
 Training was done using Tensorflow.
 
 Dataset
-_______
+=======
 
 The dataset consists of 512 grayscale images each of scrabble tiles for each letter of the alphabet.
 Small variations were created by moving the tiles around and rotating them slightly.
