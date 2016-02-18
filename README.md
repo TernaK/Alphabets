@@ -11,7 +11,8 @@ Dataset
 The dataset consists of 512 grayscale images each of scrabble tiles for each letter of the alphabet.
 Small variations were created by moving the tiles around and rotating them slightly.
 
-Files:
+Files
+=====
 * dataset.cpp uses OpenCV to capture the data. 
 * readdataset.py uses OpenCV to read the images and preprocess them by adaptive thresholding.
 * classifier.py uses Tensorflow to train the network.
