@@ -16,4 +16,4 @@ Files
 * dataset.cpp uses OpenCV to capture the data. 
 * readdataset.py uses OpenCV to read the images and preprocess them by adaptive thresholding.
 * classifier.py uses Tensorflow to train the network.
-* networktester.py models the network using the weights and biases learned and can be used to test imput images.
+* networktester.py models the network using the weights and biases learned and can be used to test input images.
