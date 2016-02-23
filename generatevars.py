@@ -5,8 +5,22 @@ import numpy as np
 import pickle as pickle
 import cv2
 import matplotlib.pyplot as plt
+from readdataset import side
 
 alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-side = 28
 im_size = side**2
 network = pickle.load(open('network.pickle', 'rb'))
+
+with open('netparms.h', 'w') as f:
+	f.write('//SIDE: ' + str(side) + '\n')
+	f.write('float Network_weights[' + str(im_size*26) + '] = {\n')
+	for i in range(26):
+		for j in range(im_size):
+			f.write('\t' + str(network['weights'][j,i]) + ',\n')
+	f.write('}\n\n')
+
+
+	f.write('float Network_biases[26] = {\n')
+	for i in range(26):
+		f.write('\t' + str(network['bias'][i]) + ',\n')
+	f.write('}')
