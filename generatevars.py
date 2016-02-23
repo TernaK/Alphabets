@@ -11,16 +11,17 @@ alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 im_size = side**2
 network = pickle.load(open('network.pickle', 'rb'))
 
-with open('netparms.h', 'w') as f:
+
+with open('netparams.h', 'w') as f:
 	f.write('//SIDE: ' + str(side) + '\n')
 	f.write('float Network_weights[' + str(im_size*26) + '] = {\n')
-	for i in range(26):
-		for j in range(im_size):
-			f.write('\t' + str(network['weights'][j,i]) + ',\n')
-	f.write('}\n\n')
+	for col in range(26):
+		for row in range(im_size):
+			f.write('\t' + str(network['weights'][row][col]) + ',\n')
+	f.write('};\n\n')
 
 
 	f.write('float Network_biases[26] = {\n')
 	for i in range(26):
 		f.write('\t' + str(network['bias'][i]) + ',\n')
-	f.write('}')
+	f.write('};')
