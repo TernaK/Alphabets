@@ -19,9 +19,15 @@ imsize = train.shape[1]
 
 # Network parameters
 x = tf.placeholder(tf.float32, [None,imsize])
-W = tf.Variable(tf.zeros([imsize,26]))
-b = tf.Variable(tf.zeros([26]))
-y = tf.nn.softmax(tf.matmul(x, W)+b)
+W = tf.Variable(tf.truncated_normal([imsize,32], stddev=0.1))
+b = tf.Variable(tf.zeros([32]))
+y1 = tf.nn.relu(tf.matmul(x, W) + b)
+
+#x1 = tf.placeholder(tf.float32, [None,imsize])
+W1 = tf.Variable(tf.zeros([32,26]))
+b1 = tf.Variable(tf.zeros([26]))
+
+y = tf.nn.softmax(tf.matmul(y1, W1)+b1)
 
 y_ = tf.placeholder(tf.float32, [None, 26])
 
@@ -35,9 +41,9 @@ sess = tf.Session()
 sess.run(init)
 
 # Run SGD training
-batchSize = 256
+batchSize = 512
 steps = 10000
-accStep = 1000
+accStep = 2000
 acc = [] # store accuracy at steps for plotting
 for i in range(steps):
 	indices = np.arange(train.shape[0])
@@ -57,6 +63,9 @@ for i in range(steps):
 network = {}
 network['weights'] = np.array(sess.run(W))
 network['bias'] = np.array(sess.run(b))
+
+network['weights1'] = np.array(sess.run(W1))
+network['bias1'] = np.array(sess.run(b1))
 
 pickle.dump(network, open('network.pickle', 'wb'))
 

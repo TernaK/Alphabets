@@ -25,7 +25,7 @@ for letter in alphabets:
 
 # Preprocessing applied to all training images
 def preprocess(img):
-	return cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 15, 10)
+	return cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 15, 20)
 
 def readData():
 	# Read in each image, threshold vectorize, save in array, save label (one-hot style)
