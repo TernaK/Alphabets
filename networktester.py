@@ -12,14 +12,14 @@ alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 im_size = side**2
 network = pickle.load(open('network.pickle', 'rb'))
 
-#tests = ['I/100.jpg', 'U/400.jpg', 'V/25.jpg', 'W/2.jpg', 'X/2.jpg', 'Y/100.jpg', 'Z/400.jpg', 'A/25.jpg',]
+tests = ['M/600.jpg', 'P/700.jpg', 'R/525.jpg', 'S/902.jpg', 'E/1020.jpg', 'G/674.jpg', 'H/800.jpg', 'B/1000.jpg',]
 
-tests = ['_TEST/a.jpg', '_TEST/d.jpg', '_TEST/e.jpg']
+#tests = ['_TEST/a.jpg', '_TEST/d.jpg', '_TEST/e.jpg']
 for test in tests:
 	# Read, preprocess, vectorize
-	img = cv2.imread('AlphabetDataset/'+test, 0)
-	img = cv2.resize(img, (side, side))
-	img = preprocess(img) 
+	img = cv2.imread('AlphabetDataset/thresh/'+test, 0)
+	#img = cv2.resize(img, (side, side))
+	#img = preprocess(img) 
 	cv2.namedWindow('image')
 	cv2.imshow('image', img)
 	cv2.waitKey()

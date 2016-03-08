@@ -13,7 +13,7 @@ import cv2
 
 side = 28
 im_size = side**2
-samples = 512*26
+samples = 4096*26
 
 alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 alphaLabels = {}
@@ -33,7 +33,7 @@ def readData():
 	allLabels = np.zeros([samples, 26])
 	index = 0
 	
-	root = 'AlphabetDataset'
+	root = 'AlphabetDataset/thresh'
 	for folder in alphabets:
 		files = os.listdir(root+'/'+folder)
 		for file in files:
@@ -41,8 +41,8 @@ def readData():
 				continue
 			filename = root+'/'+folder+'/'+file
 			img = cv2.imread(filename, 0)
-			img = cv2.resize(img, (side, side))
-			img = preprocess(img)
+			#img = cv2.resize(img, (side, side))
+			#img = preprocess(img)
 			alldata[index] = np.array(img).reshape([1,im_size])/255.
 			allLabels[index] = alphaLabels[folder]
 			index += 1
@@ -54,7 +54,7 @@ def getDataset():
 	# Separate data into training and test data. Set num_test appropriately.
 	# Randomly shuffle the data first.
 	allData, allLabels = readData()
-	num_test = 2000
+	num_test = 5120
 	num_train = samples-num_test
 
 	dataset = {'train':np.zeros([num_train,im_size]), 'trainLabels':np.zeros([num_train,26]), 'test':np.zeros([num_test,im_size]), 'testLabels':np.zeros([num_test,26])}
@@ -73,10 +73,15 @@ def getDataset():
 
 	return dataset
 
-dataset = getDataset()
+def main():
 
-for key in dataset.keys():
-	print(key + ": ", dataset[key].shape)
+	dataset = getDataset()
 
-# dump in a pickle file
-pickle.dump(dataset, open('alphadataset.pickle', 'wb'))
+	for key in dataset.keys():
+		print(key + ": ", dataset[key].shape)
+
+	# dump in a pickle file
+	pickle.dump(dataset, open('alphadataset.pickle', 'wb'))
+
+if __name__ == "__main__":
+    main()
