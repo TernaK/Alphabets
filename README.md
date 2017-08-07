@@ -1,14 +1,14 @@
 # Alphabets
-This is a two-layer neural network (768-input, 64 hidden neurons, 26 output neurons) which is used to classify images of alphabets.
+This is a two-layer neural network (768 input, 64 hidden, 26 output) used to classify images of alphabets.
 
 Training
 ========
-Training was done using Tensorflow.
+Tensorflow.
 
 Dataset
 =======
 
-The dataset consists of 4096 grayscale images each of scrabble tiles for each letter of the alphabet.
+4096 grayscale images of scrabble tiles for each letter of the alphabet.
 Small variations were created by moving the tiles around and rotating them slightly.
 
 Files
